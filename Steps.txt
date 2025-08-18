@@ -16,6 +16,9 @@ docker run -p 6333:6333 -p 6334:6334 \
    -v "$(pwd)/qdrant_storage:/qdrant/storage:z" \
    qdrant/qdrant
 
+5. To start jupyter notebook 
+uv run jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser
+
 
 Deactivate your env: 
     deactivate
