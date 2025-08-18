@@ -1,0 +1,21 @@
+1. Create virtual env with python 
+python3 -m venv llm_env
+
+2. Activate the env 
+source llm_env/bin/activate
+
+3. Install all packages required with uv 
+pip install uv 
+uv init 
+uv add -r requirements.txt 
+
+4. Create Search Engine with Qdrant 
+open -a Docker 
+docker pull qdrant/qdrant
+docker run -p 6333:6333 -p 6334:6334 \
+   -v "$(pwd)/qdrant_storage:/qdrant/storage:z" \
+   qdrant/qdrant
+
+
+Deactivate your env: 
+    deactivate

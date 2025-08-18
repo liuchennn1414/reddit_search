@@ -1,0 +1,6 @@
+notebook
+scikit-learn 
+pandas 
+numpy 
+qdrant-client[fastembed]>=1.14.2
+docker 
