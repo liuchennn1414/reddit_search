@@ -13,11 +13,11 @@ client = QdrantClient("http://localhost:6333")
 collection_name = "reddit_post_comment"
 
 # do search 
-def search(query, limit=5):
+def search(query, collection_name, limit=5):
 
 
     results = client.query_points(
-        collection_name='reddit_post_comment',
+        collection_name=collection_name,
         query=models.Document( 
             text=query, # query must be text, qdrant will do the embedding for you 
             model=model_handle 
@@ -91,8 +91,8 @@ def lamma3_groq(prompt):
         return None
 
 
-def rag_pipeline(query): 
-    search_results = search(query)
+def rag_pipeline(query,collection_name): 
+    search_results = search(query,collection_name)
     prompt = build_prompt(query, search_results)
     answer = lamma3_groq(prompt)
     return answer 
@@ -101,8 +101,8 @@ def rag_pipeline(query):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("query")
+    parser.add_argument("--query", type=str, help="Question")
+    parser.add_argument("--collection_name", type=str, default="reddit_post_comment", help="Knowledge Base")
     args = parser.parse_args()
-
-    result = rag_pipeline(args.query)
+    result = rag_pipeline(args.query,args.collection_name)
     print(result)

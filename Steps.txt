@@ -19,6 +19,23 @@ docker run -p 6333:6333 -p 6334:6334 \
 5. To start jupyter notebook 
 uv run jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser
 
+6. To run the VD set up script: 
+python test.py \
+   --collection_name test_collection
+
+7. To run streamlit: 
+   streamlit run file.py 
+
 
 Deactivate your env: 
     deactivate
+
+
+Improvements required for the current stage: 
+1. Do not hard code data path but change it to use API 
+2. Batch size, api key , port should be put in a yaml file 
+3. instead of use print(), use log 
+4. consider replacing iterrows() with itertuples() or chunked reads 
+5. add unit tests for truncate_text, data_preprocessing() and etc. 
+6. data quality check before embedding -> column exists + schema validation 
+7. Use Qdrant Batch Insert
